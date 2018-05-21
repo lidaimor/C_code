@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+
+<script>
+	var arr=[1,2,3,4,5,6,7];
+	var k=3;
+	for(var i=0;i<k;i++){
+		var p=arr[arr.length-1];
+		for(var j=arr.length-1;j>0;j--){
+			arr[j]=arr[j-1];
+		}
+		arr[0]=p;
+	}
+	console.log(arr);
+</script>
+</body>
+</html>
