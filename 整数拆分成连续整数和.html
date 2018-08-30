@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		//输出为一个数组
+		function divideSum(num){
+			var sum=0;
+			var str=[];  //存储所有结果，中间用=拼接
+			var arr=[];  //存储所有的拆分结果，对str进行处理
+			var temp=[]; //存储最终结果
+			var k=0;
+			for(let i=0;i<=num/2;i++){
+				for(let k=1;;k++){
+					sum = (k+1)*(2*i+k)/2;  //sum = i + (i+1) + ... + (i+k) = (k+1) * (2*i + k) / 2
+					if(sum > num){
+						break;
+					}
+					if(sum == num){
+						for(let j=i;j<=i+k&&j!=0;j++){
+							str.push(j);
+						}
+						str.push('=');
+					}
+				}
+			}
+			arr = str.toString().split("=").join("").split(',,');
+			for(let i=0;i<arr.length;i++){
+				var t = arr[i].toString().split(',').join(" ");
+				temp.push(t);
+			}
+			if(str.length<1){
+				return 'NONE';
+			}else{
+				return temp;
+			}
+		}
+		//简化方法1
+		function divideSum1(num){
+			var sum=0;
+			var str=[];  //用于存储一次拆分结果
+			var k=0;
+			for(let i=0;i<=num/2;i++){
+				for(let k=1;;k++){
+					sum = (k+1)*(2*i+k)/2;  //sum = i + (i+1) + ... + (i+k) = (k+1) * (2*i + k) / 2
+					if(sum > num){
+						break;
+					}
+					if(sum == num){
+						str.length=0;
+						for(let j=i;j<=i+k&&j!=0;j++){
+							str.push(j);
+						}
+						if(str!=''){
+							console.log(str.join(' '));
+						}
+					}
+				}
+			}
+			if(str.length<1){
+				return 'NONE';
+			}
+		}
+		//直接输出（与方法2类似）
+		function divideSum2(num){
+			var sum=0;
+			var str='';
+			for(let i=0;i<=num/2;i++){
+				for(let k=1;;k++){
+					sum = (k+1)*(2*i+k)/2;  //sum = i + (i+1) + ... + (i+k) = (k+1) * (2*i + k) / 2
+					if(sum > num){
+						break;
+					}
+					if(sum == num){
+						str='';
+						for(let j=i;j<=i+k&&j!=0;j++){
+							str+=j;
+						}
+						console.log(str);
+					}
+				}
+			}
+			if(!str){
+				console.log('NONE');
+			}
+		}
+		console.log(divideSum(15));
+	</script>
+</body>
+</html>

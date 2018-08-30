@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		var str1 = "This is C programming text";
+		var str2 = "This is a text for C programming";
+		/*
+		 *	描述：
+		 *	首先把字符串按照空格拆分成数组，然后按照数组每一项的长度进行排序，挑选出第二长公共单词
+		*/
+		function find(s,t){
+			var arr = s.split(" "); 
+			var num = t.split(" ");
+			console.log(arr);
+			console.log(num);
+			var sum = [];
+			var len = [];
+			//找出所有公共单词
+			for(let i = 0;i<arr.length;i++){
+				for(let j=0;j<num.length;j++){
+					if(arr[i]==num[j]){
+						sum.push(arr[i]);
+					}
+				}
+			}
+			//把公共单词的长度存在一个数组中
+			for(let i = 0;i<sum.length;i++){
+				len.push(sum[i].length);
+			}
+			//排序
+			len.sort(function(a,b){
+				return b-a;
+			})
+			//选出长度为第二长的公共单词
+			for(let i=0;i<sum.length;i++){
+				if(sum[i].length == len[1]){
+					var p = sum[i];
+					return p;
+				}
+			}
+			return -1;
+		}
+		console.log(find(str1,str2));
+	</script>
+</body>
+</html>
